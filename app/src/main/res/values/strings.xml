@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Neighbors</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="confirm">Voulez-vous supprimer ce voisin ?</string>
+    <string name="hint_address">Adress</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_website">Website</string>
+    <string name="hint_about">About me</string>
+    <string name="save">Save</string>
+    <string name="hint_image">Image</string>
+    <string name="add_neighbor">Add neighbor</string>
+    <string name="neighbor_added">Successfully added</string>
 </resources>
