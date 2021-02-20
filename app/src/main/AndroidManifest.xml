@@ -3,6 +3,7 @@
     package="com.blandinf.neighbors">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_DEVICE_CONFIG" />
 
     <application
         android:allowBackup="true"

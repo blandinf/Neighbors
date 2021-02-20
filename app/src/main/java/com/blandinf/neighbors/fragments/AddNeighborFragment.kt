@@ -10,6 +10,7 @@ import com.blandinf.neighbors.R
 import com.blandinf.neighbors.adapters.ListNeighborsAdapter
 import com.blandinf.neighbors.data.repositories.NeighborRepository
 import com.blandinf.neighbors.databinding.AddNeighborBinding
+import com.blandinf.neighbors.listeners.NavigationListener
 import com.blandinf.neighbors.models.Neighbor
 
 
@@ -33,6 +34,10 @@ class AddNeighborFragment : Fragment() {
             NeighborRepository.getInstance().createNeighbor(neighbor)
             Toast.makeText(context,getString(R.string.neighbor_added), 1)
             activity?.onBackPressed()
+        }
+
+        (activity as? NavigationListener)?.let {
+            it.updateTitle(R.string.add_neighbor)
         }
     }
 

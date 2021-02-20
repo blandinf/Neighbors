@@ -16,6 +16,7 @@ import com.blandinf.neighbors.adapters.ListNeighborHandler
 import com.blandinf.neighbors.adapters.ListNeighborsAdapter
 import com.blandinf.neighbors.data.repositories.NeighborRepository
 import com.blandinf.neighbors.databinding.ListNeighborsFragmentBinding
+import com.blandinf.neighbors.listeners.NavigationListener
 import com.blandinf.neighbors.models.Neighbor
 
 
@@ -33,15 +34,14 @@ class ListNeighborsFragment : Fragment(), ListNeighborHandler {
         binding.neighborsList.adapter = adapter
 
         binding.redirectToAddNeighbor.setOnClickListener {
-            changeFragment(AddNeighborFragment())
+            (activity as? NavigationListener)?.let {
+                it.showFragment(AddNeighborFragment())
+            }
         }
-    }
 
-    private fun changeFragment(fragment: Fragment) {
-        fragmentManager?.beginTransaction()?.apply {
-            replace(R.id.fragment_container, fragment)
-            addToBackStack(null)
-        }?.commit()
+        (activity as? NavigationListener)?.let {
+            it.updateTitle(R.string.neighbors)
+        }
     }
 
     // Quand on clique sur le bouton delete dans la liste, l'adapteur appelera cette méthode
