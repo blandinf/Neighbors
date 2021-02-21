@@ -14,4 +14,9 @@
     <string name="add_neighbor">Ajouter un voisin</string>
     <string name="neighbor_added">Voisin ajouté!</string>
     <string name="neighbors">Liste des voisins</string>
+    <string name="fill_all_text_fields">Tous les champs sont obligatoires</string>
+    <string name="validation_phone">Le format doit être 0X XX XX XX XX XX</string>
+    <string name="validation_required">Ce champ est obligatoire</string>
+    <string name="validation_web_url">Ce champ doit être une URL valide</string>
+    <string name="validation_max_charac_30">Ce champ doit faire moins de 30 charactères</string>
 </resources>

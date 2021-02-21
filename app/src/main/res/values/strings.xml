@@ -14,4 +14,9 @@
     <string name="add_neighbor">Add neighbor</string>
     <string name="neighbor_added">Successfully added</string>
     <string name="neighbors">Neighbors list</string>
+    <string name="fill_all_text_fields">You have to fill each text fields</string>
+    <string name="validation_phone">The format should be 0X XX XX XX XX XX</string>
+    <string name="validation_required">This field is required</string>
+    <string name="validation_web_url">This field should be a valid URL</string>
+    <string name="validation_max_charac_30">This field should contains 30 characters max</string>
 </resources>
