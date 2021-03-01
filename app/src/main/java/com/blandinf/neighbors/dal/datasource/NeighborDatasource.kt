@@ -1,5 +1,6 @@
-package com.blandinf.neighbors.data.datasource
+package com.blandinf.neighbors.dal.datasource
 
+import androidx.lifecycle.LiveData
 import com.blandinf.neighbors.models.Neighbor
 
 interface NeighborDatasource {
@@ -7,29 +8,28 @@ interface NeighborDatasource {
      * Get all my Neighbors
      * @return [List]
      */
-    val neighbours: List<Neighbor>
+    val neighbors: LiveData<List<Neighbor>>
 
     /**
      * Deletes a neighbor
      * @param neighbor : Neighbor
      */
-    fun deleteNeighbour(neighbor: Neighbor)
+    fun deleteNeighbor(neighbor: Neighbor)
 
     /**
      * Create a neighbour
      * @param neighbor: Neighbor
      */
-    fun createNeighbour(neighbor: Neighbor)
+    fun createNeighbor(neighbor: Neighbor)
 
     /**
      * Update "Favorite status" of an existing Neighbour"
-     * @param neighbor: Neighbor
      */
-    fun updateFavoriteStatus(neighbor: Neighbor)
+    fun updateFavoriteStatus(favoriteStatus: Boolean, id: Long)
 
     /**
      * Update modified fields of an existing Neighbour"
      * @param neighbor: Neighbor
      */
-    fun updateNeighbour(neighbor: Neighbor)
+    fun updateNeighbor(neighbor: Neighbor)
 }

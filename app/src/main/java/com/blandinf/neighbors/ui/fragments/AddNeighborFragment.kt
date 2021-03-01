@@ -1,7 +1,6 @@
-package com.blandinf.neighbors.fragments
+package com.blandinf.neighbors.ui.fragments
 
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,7 +13,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.basgeekball.awesomevalidation.utility.RegexTemplate
 import com.blandinf.neighbors.R
-import com.blandinf.neighbors.data.repositories.NeighborRepository
+import com.blandinf.neighbors.repositories.NeighborRepository
 import com.blandinf.neighbors.databinding.AddNeighborBinding
 import com.blandinf.neighbors.listeners.NavigationListener
 import com.blandinf.neighbors.models.Neighbor
