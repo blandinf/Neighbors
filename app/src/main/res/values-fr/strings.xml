@@ -19,4 +19,7 @@
     <string name="validation_required">Ce champ est obligatoire</string>
     <string name="validation_web_url">Ce champ doit être une URL valide</string>
     <string name="validation_max_charac_30">Ce champ doit faire moins de 30 charactères</string>
+    <string name="in_memory">En mémoire</string>
+    <string name="in_database">En base de données</string>
+    <string name="ajouter_aux_favoris">Ajouter aux favoris</string>
 </resources>

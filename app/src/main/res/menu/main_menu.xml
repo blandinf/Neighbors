@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/in_memory_button"
+        app:showAsAction="never"
+        android:title="@string/in_memory">
+    </item>
+    <item
+        android:id="@+id/in_db_button"
+        app:showAsAction="never"
+        android:title="@string/in_database">
+    </item>
+</menu>

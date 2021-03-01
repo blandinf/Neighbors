@@ -9,7 +9,7 @@ import com.blandinf.neighbors.models.Neighbor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class ListNeighborsAdapter(items: List<Neighbor>, val callback: ListNeighborHandler) : RecyclerView.Adapter<ListNeighborsAdapter.ViewHolder>() {
+class ListNeighborsAdapter(items: List<Neighbor>, private val callback: ListNeighborHandler) : RecyclerView.Adapter<ListNeighborsAdapter.ViewHolder>() {
     private var mNeighbours: List<Neighbor> = items
     private lateinit var binding: NeighboardItemBinding
 
@@ -20,20 +20,23 @@ class ListNeighborsAdapter(items: List<Neighbor>, val callback: ListNeighborHand
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val neighbour: Neighbor = mNeighbours[position]
-        // Display Neighbour Name
         holder.binding.itemListName.text = neighbour.name
         val context = binding.root.context
-        // Display Neighbour Avatar
+
         Glide.with(context)
-                .load(neighbour.avatarUrl)
-                .apply(RequestOptions.circleCropTransform())
-                .placeholder(R.drawable.ic_person)
-                .error(R.drawable.ic_person)
-                .skipMemoryCache(false)
-                .into(binding.itemListAvatar)
+            .load(neighbour.avatarUrl)
+            .apply(RequestOptions.circleCropTransform())
+            .placeholder(R.drawable.ic_person)
+            .error(R.drawable.ic_person)
+            .skipMemoryCache(false)
+            .into(binding.itemListAvatar)
 
         holder.binding.itemListDeleteButton.setOnClickListener {
             callback.onDeleteNeibor(neighbor = neighbour)
+        }
+
+        holder.binding.neighborItem.setOnClickListener {
+            callback.showNeighborDetails(neighbor = neighbour)
         }
     }
 
