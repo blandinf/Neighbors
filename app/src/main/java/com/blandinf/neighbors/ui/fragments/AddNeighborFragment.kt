@@ -1,5 +1,7 @@
 package com.blandinf.neighbors.ui.fragments
 
+import android.annotation.SuppressLint
+import android.app.Application
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
@@ -9,22 +11,33 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.basgeekball.awesomevalidation.AwesomeValidation
 import com.basgeekball.awesomevalidation.ValidationStyle
 import com.basgeekball.awesomevalidation.utility.RegexTemplate
 import com.blandinf.neighbors.R
-import com.blandinf.neighbors.repositories.NeighborRepository
 import com.blandinf.neighbors.databinding.AddNeighborBinding
 import com.blandinf.neighbors.listeners.NavigationListener
 import com.blandinf.neighbors.models.Neighbor
-
+import com.blandinf.neighbors.viewmodels.NeighborViewModel
 
 class AddNeighborFragment : Fragment() {
 
     private lateinit var binding: AddNeighborBinding
+    private lateinit var application: Application
+    private lateinit var viewModel: NeighborViewModel
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = AddNeighborBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    @SuppressLint("ShowToast")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        application = activity?.application ?: return
+        viewModel = ViewModelProvider(this).get(NeighborViewModel::class.java)
         listenTFChanges()
 
         binding.addNeighborButton.setOnClickListener {
@@ -39,20 +52,18 @@ class AddNeighborFragment : Fragment() {
                     aboutMe = binding.aboutTF.text.toString(),
                     favorite = false
                 )
-                NeighborRepository.getInstance().createNeighbor(neighbor)
-                Toast.makeText(context,getString(R.string.neighbor_added), Toast.LENGTH_SHORT)
+                viewModel.createNeighbor(neighbor)
+                Toast.makeText(context, getString(R.string.neighbor_added), Toast.LENGTH_SHORT)
                 activity?.onBackPressed()
             } else {
                 Toast.makeText(context, getString(R.string.fill_all_text_fields), Toast.LENGTH_SHORT)
             }
         }
 
-        (activity as? NavigationListener)?.let {
-            it.updateTitle(R.string.add_neighbor)
-        }
+        (activity as? NavigationListener)?.updateTitle(R.string.add_neighbor)
     }
 
-    private fun listenTFChanges () {
+    private fun listenTFChanges() {
         binding.nameTF.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 //
@@ -157,14 +168,5 @@ class AddNeighborFragment : Fragment() {
             binding.websiteTF.text.toString().isNotEmpty() &&
             binding.addressTF.text.toString().isNotEmpty() &&
             binding.aboutTF.text.toString().isNotEmpty()
-    }
-
-    /**
-     * Fonction permettant de définir une vue à attacher à un fragment
-     */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = AddNeighborBinding.inflate(inflater, container, false)
-
-        return binding.root
     }
 }
